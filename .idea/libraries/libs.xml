@@ -1,0 +1,34 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/box2d_processing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-linux-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-linux-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-linux-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-macosx-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-windows-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gluegen-rt-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/javamp3-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jbox2d-library-2.2.1-ds.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-linux-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-linux-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-linux-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-macosx-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-windows-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jogl-all-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jsyn-20171016.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jxl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/NES_GUI_System.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/processing-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SelectFile.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/sound.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
