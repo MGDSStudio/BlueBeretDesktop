@@ -8,7 +8,7 @@ import com.mgdsstudio.blueberet.gameprocess.PlayerControl;
 import com.mgdsstudio.blueberet.graphic.DebugGraphic;
 import com.mgdsstudio.blueberet.mainpackage.PhysicGameWorld;
 import com.mgdsstudio.blueberet.mainpackage.Program;
-import com.yandex.metrica.impl.ob.A;
+
 
 public class MercenaryBehaviourController extends EnemyController{
     private interface IBehaviours{

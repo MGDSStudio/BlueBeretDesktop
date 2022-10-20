@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.playerprogress;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.data.IntList;
 import processing.data.JSONArray;
@@ -32,7 +32,7 @@ abstract class PlayerProgress implements IPlayerProgressConstants{
     protected void deleteFile(){
         String pathForFile;
         if (Program.OS == Program.DESKTOP) pathForFile = Program.getAbsolutePathToAssetsFolder(fileName);
-        else pathForFile = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+fileName;
+        else pathForFile = FileManagement.getPathToCacheFilesInAndroid()+fileName;
         File file =  new File(pathForFile);
         System.out.println("Writeable: " + file.setWritable(true));
         System.out.println("Readable: " + file.setReadable(true));
@@ -42,7 +42,7 @@ abstract class PlayerProgress implements IPlayerProgressConstants{
     public final static boolean wasCompanyStarted(){
         String fullPath;
         if (Program.OS == Program.DESKTOP) fullPath = Program.getAbsolutePathToAssetsFolder(fileName);
-        else if (Program.OS == Program.ANDROID) fullPath = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+fileName;
+        else if (Program.OS == Program.ANDROID) fullPath = FileManagement.getPathToCacheFilesInAndroid()+fileName;
         else fullPath = "";
         File file = new File(fullPath);
         if (file.exists()){

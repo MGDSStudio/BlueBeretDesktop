@@ -1,17 +1,19 @@
 package com.mgdsstudio.blueberet.levelseditornew;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.oldlevelseditor.Editor2D;
-import com.yandex.metrica.impl.ob.Ed;
+
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class EditorPreferencesMaster {
-    private final String FILE_NAME = "Editor preferences.json";
+    //private final String FILE_NAME = "EditorPreferences.json";
+    private final String FILE_NAME = "EditorPreferences.json";
     private JSONObject data;
     private final String path;
     private final PApplet engine;
@@ -40,11 +42,12 @@ public class EditorPreferencesMaster {
     private void applyValues() {
         Editor2D.gridSpacing = gridStep;
         Editor2D.showGrid = showGrid;
+        System.out.println("Grid step set on: " + gridStep + " from the data file");
+        System.out.println("Grid is visible: " + showGrid + " from the data file");
     }
 
     private void updateValues() {
         JSONObject object = Program.engine.loadJSONObject(path);
-        //JSONObject object = data.getJSONObject(0);
         gridStep = object.getInt(Constants.GRID_STEP);
         showGrid = object.getBoolean(Constants.SHOW_GRID);
 
@@ -56,13 +59,26 @@ public class EditorPreferencesMaster {
             loadDefaultData();
         }
         else {
-            source = new File(FILE_NAME);
-            Program.iEngine.copy(source, destination);
+            source = new File(Program.getAbsolutePathToAssetsFolder(FILE_NAME));
+            if (source.exists()) {
+                Program.iEngine.copy(source, destination);
+            }
+            else {
+                String[] data = engine.loadStrings(FILE_NAME);
+                engine.saveStrings( path, data);
+            }
         }
     }
 
     private void loadDefaultData() {
 
+    }
+
+    public void saveChanged() {
+        JSONObject object = Program.engine.loadJSONObject(path);
+        object.setBoolean(Constants.SHOW_GRID, showGrid);
+        object.setInt(Constants.GRID_STEP, gridStep);
+        object.save(new File(path), null);
     }
 
 
@@ -77,5 +93,13 @@ public class EditorPreferencesMaster {
 
     public boolean isShowGrid() {
         return showGrid;
+    }
+
+    public void setGridStep(int gridStep) {
+        this.gridStep = gridStep;
+    }
+
+    public void setShowGrid(boolean showGrid) {
+        this.showGrid = showGrid;
     }
 }

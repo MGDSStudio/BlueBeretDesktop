@@ -1,10 +1,5 @@
 package com.mgdsstudio.blueberet.levelseditornew;
 
-
-
-
-import androidx.constraintlayout.solver.widgets.Rectangle;
-import com.mgdsstudio.blueberet.gamecontrollers.Rectangular;
 import com.mgdsstudio.engine.nesgui.*;
 import processing.core.PApplet;
 import processing.core.PConstants;

@@ -1,7 +1,7 @@
 package com.mgdsstudio.blueberet.gameobjects;
 
 
-import com.mgdsstudio.blueberet.classestoberemoved.BulletRayCast;
+
 import com.mgdsstudio.blueberet.gameobjects.persons.Person;
 import com.mgdsstudio.blueberet.gameprocess.CollisionFilterCreator;
 import com.mgdsstudio.blueberet.gameprocess.RayCastNew;
@@ -58,8 +58,8 @@ public class Bullet extends GameObject implements ISimpleUpdateable, IDrawable{
 	public static final boolean REDUCED_MASS = false;
 	private boolean massCategory = NOT_NULL_MASS;
 
-	private BulletRayCast rayCast;
-	private RayCastNew rayCastNew;
+
+
 
 	private boolean active;
 

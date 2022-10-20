@@ -84,9 +84,29 @@ public class Figure {
 	    init();
 	  }
 
+	public Figure(ArrayList<Point> newPoints, byte shape){
+		points = new ArrayList<Point>();
+		this.center = calculateCenter(newPoints);
+		this.shape = shape;
+		for (int i = 0; i < newPoints.size(); i++){
+			points.add(newPoints.get(i));
+			points.get(i).statement = Point.SELECTED;
+		}
+		init();
+	}
+
+	private Vec2 calculateCenter(ArrayList<Point> newPoints) {
+		float x = 0;
+		float y = 0;
+		for (Point point : newPoints){
+			x+=(point.getPosition().x/newPoints.size());
+			y+=(point.getPosition().y/newPoints.size());
+		}
+		return new Vec2(x,y);
+	}
 
 
-	  private void init(){
+	private void init(){
 		  if (shape == RECTANGULAR_SHAPE){
 			  width = (int)PApplet.abs(points.get(1).pos.x-points.get(0).pos.x);
 			  height = (int)PApplet.abs(points.get(1).pos.y-points.get(0).pos.y);

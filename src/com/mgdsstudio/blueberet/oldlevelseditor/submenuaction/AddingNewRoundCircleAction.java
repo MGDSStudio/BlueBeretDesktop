@@ -9,7 +9,7 @@ import com.mgdsstudio.blueberet.oldlevelseditor.objectsadding.PointAddingControl
 import com.mgdsstudio.blueberet.oldlevelseditor.objectsadding.RectangularElementAdding;
 import com.mgdsstudio.blueberet.oldlevelseditor.objectsadding.RoundCircleAdding;
 import com.mgdsstudio.blueberet.oldlevelseditor.submenuaction.roundelementadding.AddingRoundElement;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import org.jbox2d.common.Vec2;
@@ -305,7 +305,7 @@ public final class AddingNewRoundCircleAction extends AddingRoundElement impleme
                     setTextForConsole(onScreenConsole, "Which graphic do you want to use?");
                 }
                 else if (roundElementAddingProcess.getLocalStatement() == RoundCircleAdding.GET_TILESET_FROM_EXTERNAL_STORAGE) {
-                    setTextForConsole(onScreenConsole, "Copy graphic png file to " + AndroidSpecificFileManagement.getPathToCacheFilesInAndroid());
+                    setTextForConsole(onScreenConsole, "Copy graphic png file to " + FileManagement.getPathToCacheFilesInAndroid());
                 }
                 else if (roundElementAddingProcess.getLocalStatement() == RoundCircleAdding.TILESET_IN_DIRECTORY_CHOOSING) {
                     setTextForConsole(onScreenConsole, "Choose graphic file");

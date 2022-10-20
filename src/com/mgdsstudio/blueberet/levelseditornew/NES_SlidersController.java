@@ -37,7 +37,9 @@ public class NES_SlidersController {
                 pressedHighNumber = i;
                 lowLevelPressed = true;
                 String name = sliders.get(i).getReleasedSubbuttonName();
+                levelsEditor.saveDataForActualSubmenu();
                 levelsEditor.setNewStatementByName(name);
+
                 break;
             }
         }

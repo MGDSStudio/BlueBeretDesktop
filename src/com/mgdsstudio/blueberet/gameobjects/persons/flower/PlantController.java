@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.gameobjects.persons.flower;
 
-import com.mgdsstudio.blueberet.classestoberemoved.Flower;
+
 import com.mgdsstudio.blueberet.gamelibraries.Timer;
 import com.mgdsstudio.blueberet.gameobjects.Flag;
 import com.mgdsstudio.blueberet.gameobjects.persons.Person;
@@ -652,9 +652,9 @@ public class PlantController {
     }
 
     public void loadNormalGraphic() {
-        rod.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerBody"+ TextureDecodeManager.getExtensionForSpriteGraphicFile()), Flower.ROD_PART, (int)1, (int)1, (int)31, (int)31, (int) rod.getHeight(), (int)rod.getHeight());
-        leftJaw.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws" + TextureDecodeManager.getExtensionForSpriteGraphicFile()), Flower.LEFT_JAW, (int)0, (int)0, (int)26, (int)25, (int) leftJaw.getJawDiameter(), (int) leftJaw.getJawDiameter());
-        rightJaw.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws"+ TextureDecodeManager.getExtensionForSpriteGraphicFile()), Flower.RIGHT_JAW, (int)0, (int)0, (int)26, (int)25, (int) rightJaw.getJawDiameter(), (int) rightJaw.getJawDiameter());
+        rod.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerBody"+ TextureDecodeManager.getExtensionForSpriteGraphicFile()), Plant.ROD_PART, (int)1, (int)1, (int)31, (int)31, (int) rod.getHeight(), (int)rod.getHeight());
+        leftJaw.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws" + TextureDecodeManager.getExtensionForSpriteGraphicFile()), Plant.LEFT_JAW, (int)0, (int)0, (int)26, (int)25, (int) leftJaw.getJawDiameter(), (int) leftJaw.getJawDiameter());
+        rightJaw.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws"+ TextureDecodeManager.getExtensionForSpriteGraphicFile()), Plant.RIGHT_JAW, (int)0, (int)0, (int)26, (int)25, (int) rightJaw.getJawDiameter(), (int) rightJaw.getJawDiameter());
         /*
         rod.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerBody.png"), Flower.ROD_PART, (int)1, (int)1, (int)31, (int)31, (int) rod.getHeight(), (int)rod.getHeight());
         leftJaw.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws.png"), Flower.LEFT_JAW, (int)0, (int)0, (int)26, (int)25, (int) leftJaw.getJawDiameter(), (int) leftJaw.getJawDiameter());

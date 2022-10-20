@@ -2,7 +2,7 @@ package com.mgdsstudio.blueberet.loading;
 
 import com.mgdsstudio.blueberet.zones.ObjectsClearingZone;
 import com.mgdsstudio.blueberet.graphic.IndependentOnScreenStaticSprite;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 
 import java.io.BufferedReader;
@@ -79,7 +79,7 @@ public class ExternalRoundDataFileController {
     }
 
     private static String getPathForAndroid(String fileNameForWindowsMode){
-        String path = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+STRING_DEVIDER_FOR_ANDROID+fileNameForWindowsMode;
+        String path = FileManagement.getPathToCacheFilesInAndroid()+STRING_DEVIDER_FOR_ANDROID+fileNameForWindowsMode;
         System.out.println("For android full path to round file : " + path);
         return path;
     }
@@ -133,7 +133,7 @@ public class ExternalRoundDataFileController {
             char devider = STRING_DEVIDER_FOR_ANDROID;
             if (Program.OS == Program.DESKTOP) devider = STRING_DEVIDER_FOR_WINDOWS;
             String fullPath;
-            if (Program.OS == Program.ANDROID) fullPath = Program.engine.sketchPath + devider + directory + devider + path;
+            if (Program.OS == Program.ANDROID) fullPath = Program.iEngine.getSketchPath() + devider + directory + devider + path;
             else fullPath = path;
             ArrayList<String> data = whenReadWithBufferedReader_thenCorrect(fullPath);
             if (data == null) {

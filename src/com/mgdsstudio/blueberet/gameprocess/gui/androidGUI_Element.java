@@ -1,8 +1,10 @@
 package com.mgdsstudio.blueberet.gameprocess.gui;
 
+
+
 import com.mgdsstudio.blueberet.oldlevelseditor.Editor2D;
 import com.mgdsstudio.blueberet.mainpackage.Program;
-import com.mgdsstudio.blueberet.classestoberemoved.menus.SubWindowWithGUI;
+
 import org.jbox2d.common.Vec2;
 import processing.core.*;
 
@@ -417,23 +419,15 @@ public class androidGUI_Element {
 	  	Vec2 leftUpper = tab.getLeftUpperCorner();
 	  	int width = tab.getWidth();
 	  	int visibleHeight = tab.getVisibleHeight();
+
 	  	int relativePositionY = tab.getRelativePositionY();
 	  	int maxRelativePositionY = tab.getMaxRelativePositionY();
-	  	//if (this.getClass() == GUI_Button.class) System.out.println("pos.y: " + pos.y + " to " + (relativePositionY+visibleHeight) + "; Relative: " + relativePositionY + "Visible height: " + visibleHeight);
 	  	if ((pos.y> relativePositionY) && (pos.y < (relativePositionY+visibleHeight))) return true;
+
 	  	else return false;
 	}
 
-	public boolean isVisibleOnTab(SubWindowWithGUI tab){
-		Vec2 leftUpper = tab.getLeftUpperCorner();
-		int width = tab.getWidth();
-		int visibleHeight = tab.getVisibleHeight();
-		int relativePositionY = (int)tab.getRelativePosition().y;
-		int maxRelativePositionY = tab.getMaxRelativeY();
-		//if (this.getClass() == GUI_Button.class) System.out.println("pos.y: " + pos.y + " to " + (relativePositionY+visibleHeight) + "; Relative: " + relativePositionY + "Visible height: " + visibleHeight);
-		if ((pos.y> relativePositionY) && (pos.y < (relativePositionY+visibleHeight))) return true;
-		else return false;
-	}
+
 
 	public void setUserData(String userData){
 		this.userData = userData;

@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.gameprocess;
 
-import com.mgdsstudio.blueberet.classestoberemoved.Flower;
+
 import com.mgdsstudio.blueberet.gamecontrollers.*;
 import com.mgdsstudio.blueberet.gamelibraries.GameMechanics;
 import com.mgdsstudio.blueberet.gameobjects.*;
@@ -39,7 +39,7 @@ import com.mgdsstudio.blueberet.graphic.textes.DissolvingAndUpwardsMovingText;
 import com.mgdsstudio.blueberet.graphic.textes.OnDisplayText;
 import com.mgdsstudio.blueberet.loading.ExternalRoundDataFileController;
 import com.mgdsstudio.blueberet.loading.RoundLoader;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import com.mgdsstudio.blueberet.mainpackage.PhysicGameWorld;
@@ -157,7 +157,7 @@ public class GameRound{
 				pathToLevels = Program.getRelativePathToAssetsFolder() + Program.USER_LEVELS_PREFIX + roundNumber + Program.USER_LEVELS_EXTENSION;
 			}
 			else {
-				pathToLevels = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid() + Program.USER_LEVELS_PREFIX + roundNumber + Program.USER_LEVELS_EXTENSION;
+				pathToLevels = FileManagement.getPathToCacheFilesInAndroid() + Program.USER_LEVELS_PREFIX + roundNumber + Program.USER_LEVELS_EXTENSION;
 			}
 		}
 		else {
@@ -311,6 +311,7 @@ public class GameRound{
 	}
 
 	private void loadGraphic() {
+
 		moveableSprites = new ArrayList<>();
 		moveableSpritesAddingController = new MoveableSpritesAddingController(moveableSprites);
 		for (Background background : backgrounds){
@@ -348,9 +349,10 @@ public class GameRound{
 		}
 		try{
 			for (Person person : persons){
-				if (person.getClass() != Flower.class) {
+
 					person.loadAnimationData(mainGraphicController);
-				}
+
+
 			}
 		}
 		catch (Exception e){
@@ -988,7 +990,7 @@ public class GameRound{
         int nearestPortalNumber = 0;
         if (portals.size()>0){
         for (Person person : persons) {
-            if (person.getClass() != Soldier.class && person.isAlive() && person.getClass() != Flower.class) {
+            if (person.getClass() != Soldier.class && person.isAlive()) {
                 for (int i = 0; i < portals.size(); i++) {
                     if (portals.get(i).mustBeOnScreenButtonShown(person) && portals.get(i).getActivatedBy() != PipePortal.BY_PLAYER) {
                         personOnFlag = true;

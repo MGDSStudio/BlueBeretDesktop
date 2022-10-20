@@ -219,8 +219,13 @@ public abstract class AbstractCamera {
 
     }
 
+
+
+
     public Vec2 getActualPositionForScreenCenterInEditor() {
         return cameraCenterPositionInEditor;
+
     }
+
 
 }

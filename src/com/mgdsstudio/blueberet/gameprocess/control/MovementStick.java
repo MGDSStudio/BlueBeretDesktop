@@ -35,6 +35,8 @@ public class MovementStick extends StickAbstract{
     private int holeVisibleDiameter;
     private int distanceFromHoleToStick;
 
+
+
     public MovementStick (int x, int y, int diameter) {
         calculateDimensions(diameter);
         if (stickHole == null) {
@@ -79,30 +81,7 @@ public class MovementStick extends StickAbstract{
     }
 
     private Vec2 getCenterTouchPosition() {
-        if (Program.OS == Program.DESKTOP) {
-            return new Vec2(Program.engine.mouseX, Program.engine.mouseY);
-        }
-        else if (Program.OS == Program.ANDROID) {
-            ArrayList<PVector> onStickTouches = new ArrayList<PVector>();
-            for (int i = 0; i < Program.engine.touches.length; i++) {
-                if (GameMechanics.isPointInCircle(Program.engine.touches[i].x, Program.engine.touches[i].y, basicPosition.x, basicPosition.y, maxZoneRadius*2)){
-                    onStickTouches.add(new PVector(Program.engine.touches[i].x, Program.engine.touches[i].y));
-                }
-            }
-            float x = 0;
-            float y = 0;
-            for (int j = 0; j < onStickTouches.size(); j++) {
-                x+=onStickTouches.get(j).x;
-                y+=onStickTouches.get(j).y;
-            }
-            x/=onStickTouches.size();
-            y/=onStickTouches.size();
-            return new Vec2(x,y);
-        }
-        else {
-            System.out.println("There are no data about OS for this stick control");
-            return null;
-        }
+        return Program.iEngine.getCenterTouchPosition(basicPosition, maxZoneRadius);
     }
 
     public void updateStatementForAndroidMode() {

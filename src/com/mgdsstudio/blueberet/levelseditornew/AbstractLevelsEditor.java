@@ -113,4 +113,10 @@ public abstract class AbstractLevelsEditor {
     public GameMainController getGameMainController() {
         return gameMainController;
     }
+
+    public void setActualPressedKey(char key) {
+
+    }
+
+
 }

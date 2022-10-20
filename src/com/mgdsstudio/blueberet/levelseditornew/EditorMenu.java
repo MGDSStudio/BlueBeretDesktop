@@ -37,6 +37,8 @@ public class EditorMenu {
         int arrowWidth = graphics.width/9;
         int tabWidth = graphics.width-distanceToTabX*2-arrowWidth-distanceToTabX;
         tab = new Tab(distanceToTabX, graphics.height/2,tabWidth, (int) (graphics.height/1.5f), graphics.height-graphics.height/2-distanceToTabX, "Tab", graphics);
+        int basicSubGuiHeight = (int) (Tab.getNormalButtonHeightRelativeToScreenSize(engine.width)*0.8f);
+        tab.setGuiHeight(basicSubGuiHeight);
         int arrowLeft = (int) (graphics.width-tab.getLeftX()-arrowWidth);
         ScrollArrow arrowUp = new ScrollArrow(arrowLeft, (int) tab.getUpperY(), arrowWidth, graphics, ScrollArrow.DIRECTION_UP, tab);
         ScrollArrow arrowDown = new ScrollArrow(arrowLeft, (int) tab.getUpperY()+tab.getVisibleHeight()-arrowUp.getHeight(), arrowWidth, graphics, ScrollArrow.DIRECTION_DOWN, tab);

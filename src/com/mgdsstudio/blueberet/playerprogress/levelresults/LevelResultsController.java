@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.playerprogress.levelresults;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 
 abstract class LevelResultsController implements  ILevelResults{
@@ -18,7 +18,7 @@ abstract class LevelResultsController implements  ILevelResults{
         if (Program.OS == Program.DESKTOP){
             path = Program.getAbsolutePathToAssetsFolder(FILE_NAME+zone+EXTENSION);
         }
-        else path = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+FILE_NAME+zone+EXTENSION;
+        else path = FileManagement.getPathToCacheFilesInAndroid()+FILE_NAME+zone+EXTENSION;
         return path;
     }
 

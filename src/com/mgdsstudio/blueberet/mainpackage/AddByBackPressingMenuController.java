@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.mainpackage;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class AddByBackPressingMenuController {
             if (Program.withAdds) {
                 active = true;
             }
-            path = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+FILE_NAME;
+            path = FileManagement.getPathToCacheFilesInAndroid()+FILE_NAME;
         }
         else System.out.println("No adds for Desktop ");
     }

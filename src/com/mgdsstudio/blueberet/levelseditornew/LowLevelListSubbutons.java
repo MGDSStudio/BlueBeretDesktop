@@ -1,5 +1,6 @@
 package com.mgdsstudio.blueberet.levelseditornew;
 
+import com.mgdsstudio.blueberet.levelseditornew.sliders.LowLevelFile;
 import com.mgdsstudio.blueberet.levelseditornew.sliders.LowLevelPreferences;
 import com.mgdsstudio.blueberet.levelseditornew.sliders.LowLevelZones;
 
@@ -68,8 +69,10 @@ enum LowLevelListSubbutons {
 
     static LowLevelListSubbutons getStatementByName(String name){
 
+
         if (name == LowLevelPreferences.GRID_PREFERENCES) return DISPLAYING_PREFERENCES;
         else if (name == LowLevelZones.NEW_CLEARING_ZONE) return NEW_CLEARING_ZONE;
+        else if (name == LowLevelFile.SAVE_MAP) return SAVE_MAP;
         else return DISPLAYING_PREFERENCES;
     }
 }

@@ -1,7 +1,8 @@
 package com.mgdsstudio.blueberet.gameobjects;
 
-import com.mgdsstudio.blueberet.classestoberemoved.Flower;
+
 import com.mgdsstudio.blueberet.gameobjects.data.GameObjectDataForStoreInEditor;
+import com.mgdsstudio.blueberet.gameobjects.persons.flower.Plant;
 import com.mgdsstudio.blueberet.gameobjects.persons.flower.PlantController;
 import com.mgdsstudio.blueberet.gameprocess.CollisionFilterCreator;
 import com.mgdsstudio.blueberet.gameprocess.GameRound;
@@ -70,7 +71,7 @@ public class RoundPipe extends RoundElement implements IDrawable{
 		else if (angle == 90) entrySide = Program.TO_DOWN;
 		else if (angle == 180) entrySide = Program.TO_LEFT;
 		leftUpperPoint = new Vec2(0,0);
-		if (flowerBehaviour != Flower.NO_FLOWER) withFlower = true;
+		if (flowerBehaviour != PlantController.NO_FLOWER) withFlower = true;
 		makeBody(leftUpperCorner, w, h, entrySide);
 		leftUpperPoint.x = getPixelPosition().x-w/2;
 		leftUpperPoint.y = getPixelPosition().y-h/2;
@@ -90,7 +91,7 @@ public class RoundPipe extends RoundElement implements IDrawable{
 		System.out.println("Pipe angle: " + angleInDegrees + "; Side: " + entrySide);
 		leftUpperPoint = new Vec2(0,0);
 		flowerBehaviour = data.getFlowerBehaviour();
-		if (flowerBehaviour!=Flower.NO_FLOWER) withFlower = true;
+		if (flowerBehaviour!=PlantController.NO_FLOWER) withFlower = true;
 		PVector leftUpperCorner = data.getLeftUpperCorner();
 		makeBody(leftUpperCorner, w, h, entrySide);
 		leftUpperPoint.x = getPixelPosition().x-w/2;
@@ -277,11 +278,12 @@ public class RoundPipe extends RoundElement implements IDrawable{
 		}
 	}
 
-	public void loadFlowerImageData(Flower flower){
-		flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerBody.png"), Flower.ROD_PART, (int)1, (int)1, (int)31, (int)31, (int) flower.getRodLength(), (int)flower.getRodLength());
-		flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws.png"), Flower.LEFT_JAW, (int)0, (int)0, (int)26, (int)25, (int) flower.getRodDiameter(), (int) flower.getRodDiameter());
-		flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws.png"), Flower.RIGHT_JAW, (int)0, (int)0, (int)26, (int)25, (int) flower.getRodDiameter(), (int) flower.getRodDiameter());
-	}
+	public void loadFlowerImageData(Plant flower){
+		System.out.println("Not implemented load flower");
+		/*flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerBody.png"), Plant.ROD_PART, (int)1, (int)1, (int)31, (int)31, (int) flower.getRodLength(), (int)flower.getRodLength());
+		flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws.png"), Plant.LEFT_JAW, (int)0, (int)0, (int)26, (int)25, (int) flower.getRodDiameter(), (int) flower.getRodDiameter());
+		flower.loadImageData(Program.getAbsolutePathToAssetsFolder("FlowerJaws.png"), Plant.RIGHT_JAW, (int)0, (int)0, (int)26, (int)25, (int) flower.getRodDiameter(), (int) flower.getRodDiameter());
+	*/}
 
 	public void loadPlantImageData(PlantController plantController, Tileset tilesetForJaw, Tileset tilesetForRod){
 		plantController.loadNormalGraphic();

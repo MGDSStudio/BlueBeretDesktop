@@ -1,26 +1,17 @@
 package com.mgdsstudio.blueberet.gamelibraries;
 
-import android.os.Build;
-import android.os.Environment;
-import androidx.annotation.RequiresApi;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public abstract class StringLibrary {
 
-    private static ArrayList<String> getFilesListForAndroid(){
+    public static ArrayList<String> getFilesListForAndroid(){
         ArrayList<String> names = new ArrayList<>();
-        String [] files = AndroidSpecificFileManagement.getFilesListInAssets("");
+        String [] files = FileManagement.getFilesListInAssets("");
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
                 names.add(files[i]);
@@ -35,147 +26,16 @@ public abstract class StringLibrary {
 
     //@RequiresApi(api = Build.VERSION_CODES.O)
     public static ArrayList<String> getFilesListInAssetsFolder(){
-        ArrayList<String> names = new ArrayList<>();
 
-            if (Program.OS == Program.DESKTOP) {
-                //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    try {
-                        try (Stream<Path> paths = Files.walk(Paths.get(Program.getRelativePathToAssetsFolder()))) {
-                            List<String> files = paths.filter(x -> Files.isRegularFile(x))
-                                    .map(Path::toString)
-                                    .collect(Collectors.toList());
-                            // print all files
-                            files.forEach(System.out::println);
-                            for (int i = 0; i < files.size(); i++) names.add(files.get(i));
+        return Program.iEngine.getFilesListInAssetsFolder();
 
-                        } catch (IOException ex) {
-                            System.out.println("Can not get files list for this API version");
-                            ex.printStackTrace();
-                        }
-                        //}
-                        return names;
-                    } catch (Exception e) {
-
-                    }
-                //}
-            }
-            else {
-                names = getFilesListForAndroid();
-
-            }
-
-        return names;
     }
 
-    /*
-    public static ArrayList<String> getFilesListForAndroid(){
-        if (Programm.OS == Programm.ANDROID) {
-            ArrayList<String> names = new ArrayList<>();
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                try (Stream<Path> paths = Files.walk(Paths.get("Assets"))) {
-                    List<String> files = paths.filter(x -> Files.isRegularFile(x))
-                            .map(Path::toString)
-                            .collect(Collectors.toList());
-                    // print all files
-                    files.forEach(System.out::println);
-                    for (int i = 0; i < files.size(); i++) names.add(files.get(i));
 
-                } catch (IOException ex) {
-                    System.out.println("Can not get files list for this API version");
-                    ex.printStackTrace();
-                }
-            }
-            return names;
-        }
-        return null;
-    }*/
-
-
-
-    /*
-    public static  ArrayList<String> getFilesListInAssets(){
-        ArrayList <String> names = new ArrayList<>();
-        String pathToCache = "";
-        //System.out.println("Path to find files in cache: " + Environment.getExternalStorageDirectory() + AndroidSpecificFileManagement.SD_CACHE_PATH);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            try (Stream<Path> paths = Files.walk(Paths.get(pathToCache))) {
-                List<String> files = paths.filter(x -> Files.isRegularFile(x))
-                        .map(Path::toString)
-                        .collect(Collectors.toList());
-                files.forEach(System.out::println);
-                for (int i = 0; i < files.size(); i++) names.add(files.get(i));
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        else {
-            System.out.println("Your android SDK is " + android.os.Build.VERSION.SDK_INT  + " must be at least " + android.os.Build.VERSION_CODES.O);
-            String directoryPath;
-            if (pathToCache.length()>1) directoryPath = pathToCache.substring(0,pathToCache.length()-1);
-            else directoryPath = pathToCache;
-            names = getFilesListInDirectory(directoryPath);
-        }
-        return names;
-    }*/
 
     public static  ArrayList<String> getFilesListInCache(){
-        ArrayList <String> names = new ArrayList<>();
-        String pathToCache = Environment.getExternalStorageDirectory() + AndroidSpecificFileManagement.SD_CACHE_PATH;
-        System.out.println("Path to find files in cache: " + Environment.getExternalStorageDirectory() + AndroidSpecificFileManagement.SD_CACHE_PATH);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            try (Stream<Path> paths = Files.walk(Paths.get(pathToCache))) {
-                List<String> files = paths.filter(x -> Files.isRegularFile(x))
-                        .map(Path::toString)
-                        .collect(Collectors.toList());
-                files.forEach(System.out::println);
-                for (int i = 0; i < files.size(); i++) names.add(files.get(i));
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        else {
-            System.out.println("Your android SDK is " + android.os.Build.VERSION.SDK_INT  + " must be at least " + android.os.Build.VERSION_CODES.O);
-            String directoryPath = pathToCache.substring(0,pathToCache.length()-1);
-            names = getFilesListInDirectory(directoryPath);
-        }
-        return names;
+        return Program.iEngine.getFilesListInCache();
     }
-
-    public static ArrayList<String> getFilesListInDirectory(String pathToDirectory){
-        Program.engine.requestPermission("android.permission.MANAGE_EXTERNAL_STORAGE");
-        File dir = new File(pathToDirectory);
-        System.out.println("Try to get files list for directory: " + pathToDirectory);
-        ArrayList<String> namesList = new ArrayList<>();
-        if (!dir.isDirectory()) System.out.println("This is not a directory: ");
-        if (!dir.isFile()) System.out.println("This is not a file");
-        if (!dir.exists()) System.out.println("This directory doesn't exist");
-        File[] files = dir.listFiles();
-        String[] names = dir.list();
-        /*
-        if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-                namesList.add(files[i].getName());
-                System.out.println("found file: " + files[i]);
-            }
-        }*/
-        //else
-        if (names != null) {
-            for (int i = 0; i < names.length; i++) {
-                namesList.add(names[i]);
-                //System.out.println("found name: " + names[i]);
-            }
-        }
-        else System.out.println("Can not get files in " + pathToDirectory);
-        return namesList;
-    }
-
-    /*
-    public static String getLevelNameByPath(String path){
-
-    }*/
-
 
     public static ArrayList<String> getFilesByPrefixAndSuffix(ArrayList<String> data, String prefix, String suffix){
         ArrayList <String> names = new ArrayList<>();
@@ -256,10 +116,7 @@ public abstract class StringLibrary {
         System.out.println("This function is wrong and not is used");
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i).contains(stringToBeFound)) {
-                /*
-                if ((array.get(i).substring(0, stringToBeFound.length()-1) == "Assets") || (array.get(i).substring(0, stringToBeFound.length()-1).equals("Assets"))){
-                    data.add(array.get(i));
-                }*/
+
                 if ((array.get(i).substring(0, stringToBeFound.length()-1) == stringToBeFound) || (array.get(i).substring(0, stringToBeFound.length()-1).equals(stringToBeFound))){
                     data.add(array.get(i));
                 }
@@ -309,8 +166,4 @@ public abstract class StringLibrary {
         return sourceString;
     }
 
-
-    public static void getFilesListInAssetsFolderForOldAndroid() {
-
-    }
 }

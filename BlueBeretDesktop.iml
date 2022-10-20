@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/libs" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/App/src/main/Assets" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/src/App/src/main/Assets" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

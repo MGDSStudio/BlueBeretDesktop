@@ -2,8 +2,7 @@ package com.mgdsstudio.blueberet.menusystem.menu;
 
 
 import com.mgdsstudio.blueberet.gamelibraries.Timer;
-import com.mgdsstudio.blueberet.loading.UserLevelsToCacheCopyMaster;
-import com.mgdsstudio.blueberet.androidspecific.MainActivity;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.menusystem.GameMenusController;
 import com.mgdsstudio.blueberet.menusystem.MenuType;
@@ -170,7 +169,7 @@ public class MainMenu extends AbstractMenu{
                 }
             }
             else {
-                System.out.println("Buttons are blocked");
+                //System.out.println("Buttons are blocked");
                 if (WITH_APPEARING){
                     if (afterAppearingTimer == null) {
                         System.out.println("Init audio");
@@ -227,8 +226,7 @@ public class MainMenu extends AbstractMenu{
                 if (timerToStartDataCopy.isTime()) {
                     timerForWaitingUntilFilesCopied = new Timer(timeToWaitForCopying);
                     if (Program.OS == Program.ANDROID) {
-                        UserLevelsToCacheCopyMaster userLevelsToCacheCopyMaster = new UserLevelsToCacheCopyMaster(gameMenusController.getEngine());
-                        userLevelsToCacheCopyMaster.copyToDataInCache();
+                        Program.iEngine.copyUserLevelsToCache();
 
                     }
                     filesCopingEnded = true;

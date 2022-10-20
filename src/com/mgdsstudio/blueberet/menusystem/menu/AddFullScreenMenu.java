@@ -1,7 +1,7 @@
 package com.mgdsstudio.blueberet.menusystem.menu;
 
 import com.mgdsstudio.blueberet.gamelibraries.Timer;
-import com.mgdsstudio.blueberet.androidspecific.MainActivity;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.menusystem.GameMenusController;
 import com.mgdsstudio.blueberet.menusystem.MenuType;
@@ -44,7 +44,7 @@ public class AddFullScreenMenu extends AddMenu{
             }
         }
         if (addProgress){
-            MainActivity mainActivity = (MainActivity) gameMenusController.getEngine().getActivity();
+            //MainActivity mainActivity = (MainActivity) gameMenusController.getEngine().getActivity();
             gameMenusController.stopMusic();
             if (Program.iEngine.isFullScreenAddCompleted()){
                 if (Program.iEngine.isFullScreenAdStartedToUpload()){

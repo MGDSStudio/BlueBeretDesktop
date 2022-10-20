@@ -58,6 +58,21 @@ public class LoadingMaster extends ExternalRoundDataFileController {
         else System.out.println("Path to round file: " + fileNumber + " is " + path);
     }
 
+    public LoadingMaster(String singleDataString) {
+        fileData = new String[1];
+        fileData[0] = singleDataString;
+        /*
+        boolean canNotLoadWithThisLoader = false;
+        if (loadingType == LOADING_WITH_JAVA_STRING_DECODER) {
+            canNotLoadWithThisLoader = loadingFileDataInJavaMode();
+        }
+        if (loadingType == LOADING_WITH_PROCESSING_STRING_DECODER || canNotLoadWithThisLoader == true || fileData == null) {
+            loadingFileDataInProcessingMode();
+        }
+        if (path == null) System.out.println("Path to round file: " + fileNumber + " is null");
+        else System.out.println("Path to round file: " + fileNumber + " is " + path);*/
+    }
+
     LoadingMaster(){
 
     }
@@ -123,7 +138,8 @@ public class LoadingMaster extends ExternalRoundDataFileController {
         for (int i = 0; i < textData.length; i++) {
             LevelDataStringDecoder levelDataStringDecoder = new LevelDataStringDecoder(textData[i]);
             int[] values = levelDataStringDecoder.getValues(MAIN_DATA_START_CHAR, DIVIDER_BETWEEN_VALUES, GRAPHIC_NAME_START_CHAR);
-            String pathToTexture = levelDataStringDecoder.getPathToTexture(GRAPHIC_NAME_START_CHAR, GRAPHIC_NAME_END_CHAR);
+            String pathToTexture = Program.getAbsolutePathToAssetsFolder(levelDataStringDecoder.getPathToTexture(GRAPHIC_NAME_START_CHAR, GRAPHIC_NAME_END_CHAR));
+
             int[] graphicData = levelDataStringDecoder.getGraphicData(GRAPHIC_NAME_END_CHAR, DIVIDER_BETWEEN_GRAPHIC_DATA);    //System.out.print("Val:");
             IndependentOnScreenStaticSprite IndependentOnScreenStaticSprite = createIndependentOnScreenStaticSprite(values, pathToTexture, graphicData);
             independentOnScreenSprites.add(IndependentOnScreenStaticSprite);

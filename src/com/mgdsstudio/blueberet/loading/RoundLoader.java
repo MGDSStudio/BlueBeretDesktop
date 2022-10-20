@@ -37,6 +37,11 @@ public class RoundLoader {
 		loadingMaster = new LoadingMaster(actualRoundNumber, levelType);
 	}
 
+	public RoundLoader(String dataString) {
+		System.out.println("Try to load new level data from: " + dataString);
+		loadingMaster = new LoadingMaster(dataString);
+	}
+
 	public MusicInGameController getMusicInGameController(){
 		return loadingMaster.getMusicInGameController();
 	}

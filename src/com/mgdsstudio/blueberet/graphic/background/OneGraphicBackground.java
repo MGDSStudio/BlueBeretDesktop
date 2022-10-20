@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.graphic.background;
 
-import android.service.quicksettings.Tile;
+
 import com.mgdsstudio.blueberet.graphic.Tileset;
 import com.mgdsstudio.blueberet.graphic.simplegraphic.Image;
 import com.mgdsstudio.blueberet.mainpackage.Program;

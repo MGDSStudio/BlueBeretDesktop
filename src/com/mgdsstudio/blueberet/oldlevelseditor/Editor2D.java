@@ -2,12 +2,12 @@ package com.mgdsstudio.blueberet.oldlevelseditor;
 
 import com.mgdsstudio.blueberet.gamelibraries.Timer;
 import com.mgdsstudio.blueberet.gameobjects.data.GameObjectDataForStoreInEditor;
-import com.mgdsstudio.blueberet.androidspecific.AndroidLauncher;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
-import select.files.SelectLibrary;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -253,18 +253,7 @@ public abstract class Editor2D {
         levelWasChangedFromRedactor = true;
     }
 
-    public static void initFileLoader(){
-        if (Program.OS == Program.ANDROID) {
-            AndroidLauncher.selectLibrary = new SelectLibrary(Program.engine);
-            if (!Program.engine.hasPermission("android.permission.READ_EXTERNAL_STORAGE")) {
-                Program.engine.requestPermission("android.permission.READ_EXTERNAL_STORAGE", "handleRequest");
-            }
-            else{
 
-                AndroidLauncher.selectLibrary.selectInput("Select a graphic file:", "fileSelected");
-            }
-        }
-    }
 
     public static boolean isLevelChanged(){
         return levelWasChangedFromRedactor;

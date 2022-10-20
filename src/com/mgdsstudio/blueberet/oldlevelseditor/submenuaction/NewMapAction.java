@@ -7,7 +7,7 @@ import com.mgdsstudio.blueberet.gameprocess.gui.androidAndroidGUI_Button;
 import com.mgdsstudio.blueberet.gameprocess.gui.androidGUI_Element;
 import com.mgdsstudio.blueberet.gameprocess.gui.androidGUI_ScrollableTab;
 import com.mgdsstudio.blueberet.gameprocess.gui.androidAndroidGUI_TextField;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import org.jbox2d.common.Vec2;
 
@@ -182,7 +182,7 @@ public class NewMapAction extends SubmenuAction{
         }
         else {
             //pathToTemplate = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+TEMPLATE_NAME;
-            newLevelname =AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+Program.USER_LEVELS_PREFIX+newLevelNumber+Program.USER_LEVELS_EXTENSION;
+            newLevelname = FileManagement.getPathToCacheFilesInAndroid()+Program.USER_LEVELS_PREFIX+newLevelNumber+Program.USER_LEVELS_EXTENSION;
         }
         System.out.println("Path to template file: " + pathToTemplate);
 

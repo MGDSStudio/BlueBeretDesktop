@@ -192,21 +192,9 @@ public class FivePartsStick extends StickAbstract {
     }
 
     private void fillOnStickTouchesArray(){
-        onStickTouchesArray.clear();
-        if (mutStickTouchesPool.size()< Program.engine.touches.length){
-            while(mutStickTouchesPool.size()< Program.engine.touches.length){
-                mutStickTouchesPool.add(new Coordinate(0,0));
-                //Filling pool with null objects
-            }
-        }
-        for (int i = 0; i < Program.engine.touches.length; i++) {
-            mutStickTouchesPool.get(i).x = Program.engine.touches[i].x;
-            mutStickTouchesPool.get(i).y = Program.engine.touches[i].y;
-            if (GameMechanics.isPointInRect(mutStickTouchesPool.get(i).x, mutStickTouchesPool.get(i).y, allStickHoleZone)) {
-                onStickTouchesArray.add(mutStickTouchesPool.get(i));
-                //System.out.println("Pos: " + mutStickTouchesPool.get(i).x + " x " + mutStickTouchesPool.get(i).y);
-            }
-        }
+        Program.iEngine.fillOnStickTouchesArray(onStickTouchesArray, mutStickTouchesPool, allStickHoleZone);
+
+
     }
 
     private Vec2 getCenterTouchPosition() {

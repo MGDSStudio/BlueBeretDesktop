@@ -71,31 +71,8 @@ public class OnScreenButton {
     }
 
     boolean isButtonTouched(){   // minimum one touch place
-		if (Program.OS == Program.ANDROID) {
-			if (MULTITOUCH) {
-			    if (Program.engine.touches.length>0) {
-			        for (int i = 0; i < Program.engine.touches.length; i++) {
-			            if (Program.engine.dist(x, y, Program.engine.touches[i].x, Program.engine.touches[i].y) < buttonNominalRadius) {
-			                return true;
-			            }
-			        }
-			        return false;
-			    }
-			    return false;
-			}
-			return false;
-		}
-	  /* For windows mode */
-	  // There is no multitouch
-    	else if (Program.OS == Program.DESKTOP) {
-    		if (Program.engine.mousePressed == true) {
-	            if (Program.engine.dist(x, y, Program.engine.mouseX, Program.engine.mouseY) < buttonNominalRadius) {
-	                return true;
-	            }            
-    		}
-    		return false;
-	    }
-	    return false;
+        return Program.iEngine.isButtonTouched(this);
+
 	}
 
 
@@ -380,5 +357,17 @@ public class OnScreenButton {
     public void setFlip(boolean flag) {
         //System.out.println("Flip was set " + flag);
         this.flip = flag;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getRadius() {
+        return buttonNominalRadius;
     }
 }

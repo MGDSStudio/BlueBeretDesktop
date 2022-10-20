@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.menusystem.load.beretcolorchanger;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.data.JSONArray;
 
@@ -15,7 +15,7 @@ public abstract class AbstractBeretColorMaster implements IBeretColors{
 
     protected static String getPathToFile(){
         if (Program.OS == Program.DESKTOP) return Program.getRelativePathToAssetsFolder()+fileName;
-        else return AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+fileName;
+        else return FileManagement.getPathToCacheFilesInAndroid()+fileName;
     }
 
     public TwiceColor getBeretColor() {

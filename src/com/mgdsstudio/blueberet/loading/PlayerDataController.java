@@ -1,7 +1,7 @@
 package com.mgdsstudio.blueberet.loading;
 
 import com.mgdsstudio.blueberet.gameobjects.persons.Soldier;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.weapon.WeaponType;
 import processing.data.JSONArray;
@@ -35,7 +35,7 @@ public abstract class PlayerDataController {
         System.out.println("Level type name for this level is " + fileName);
         pathToFile = "";
         if (Program.OS == Program.ANDROID){
-            pathToFile = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+ fileName;
+            pathToFile = FileManagement.getPathToCacheFilesInAndroid()+ fileName;
             copyTemplateFile(savingType, pathToFile);
         }
         else{
@@ -48,7 +48,7 @@ public abstract class PlayerDataController {
     private void copyTemplateFile(boolean savingType, String endFilePath) {
         File file = new File(pathToFile);
         if (file.exists()){
-            System.out.println("File exists;");
+            System.out.println("File " + file.getAbsolutePath() + " exists;");
         }
         else {
             System.out.println("File must be copied to " + file.getAbsolutePath() + " does not exist");

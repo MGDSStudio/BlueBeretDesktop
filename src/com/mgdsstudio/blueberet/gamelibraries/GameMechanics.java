@@ -48,14 +48,18 @@ public abstract class GameMechanics implements IGame{
     }
 
         public static Vec2 getCenterBetweenTwoPoints(Vec2 firstPoint, Vec2 secondPoint){
-            float deltaX = 0f;
+            float x = (firstPoint.x+secondPoint.x)/2;
+            float y = (firstPoint.y+secondPoint.y)/2;
+            return new Vec2(x,y);
+            /*float deltaX = 0f;
             float deltaY = 0f;
             if (secondPoint.x>firstPoint.x) deltaX = secondPoint.x-firstPoint.x;
             else deltaX = firstPoint.x-secondPoint.x;
             if (secondPoint.y>firstPoint.y) deltaY = secondPoint.y-firstPoint.y;
             else deltaY = firstPoint.y-secondPoint.y;
             Vec2 center = new Vec2(firstPoint.x+deltaX/2, (secondPoint.y+deltaY/2));
-            return center;
+            return center;*/
+
         }
 
         static PVector getPositionBehindPerson(PVector position, int angle, int distance){
@@ -264,9 +268,14 @@ public abstract class GameMechanics implements IGame{
         else return false;
     }
 
-
+/*
         public static boolean isPointInCircle(TouchEvent.Pointer point, PVector center, float radius) {
             if (Program.engine.dist(center.x, center.y, point.x, point.y) <= radius) return true;
+            else return false;
+        }*/
+
+        public static boolean isPointInCircle(float pointX, float pointY, PVector center, float radius) {
+            if (Program.engine.dist(center.x, center.y, pointX, pointY) <= radius) return true;
             else return false;
         }
 

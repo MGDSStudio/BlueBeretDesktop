@@ -1050,4 +1050,11 @@ public class GameProcess {
 		screenshotMustBeSaved = true;
 
     }
+
+	public void setActualPressedKey(char key) {
+		if (levelsEditorProcess != null){
+			levelsEditorProcess.setActualPressedKey(key);
+		}
+
+	}
 }

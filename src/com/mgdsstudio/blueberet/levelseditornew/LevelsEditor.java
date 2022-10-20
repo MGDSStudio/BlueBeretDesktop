@@ -1,11 +1,16 @@
 package com.mgdsstudio.blueberet.levelseditornew;
 
 import com.mgdsstudio.blueberet.gameobjects.SingleGameElement;
+import com.mgdsstudio.blueberet.gameobjects.data.GameObjectDataForStoreInEditor;
 import com.mgdsstudio.blueberet.gameprocess.GameRound;
 import com.mgdsstudio.blueberet.graphic.HUD.OnScreenText;
 import com.mgdsstudio.blueberet.levelseditornew.submenu.AbstractSubmenu;
 import com.mgdsstudio.blueberet.levelseditornew.submenu.ClearingZoneSubmenu;
 import com.mgdsstudio.blueberet.levelseditornew.submenu.PreferencesSubmenu;
+import com.mgdsstudio.blueberet.levelseditornew.submenu.SaveMapSubmenu;
+import com.mgdsstudio.blueberet.loading.ExternalRoundDataFileController;
+import com.mgdsstudio.blueberet.loading.LoadingMaster;
+import com.mgdsstudio.blueberet.loading.SaveMaster;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import com.mgdsstudio.blueberet.mainpackage.GameMainController;
 import com.mgdsstudio.blueberet.mainpackage.PhysicGameWorld;
@@ -16,12 +21,15 @@ import com.mgdsstudio.blueberet.oldlevelseditor.submenuaction.SelectingAction;
 import com.mgdsstudio.engine.nesgui.Frame;
 import com.mgdsstudio.engine.nesgui.FrameWithMoveableText;
 import com.mgdsstudio.engine.nesgui.Tab;
+import org.jbox2d.common.Vec2;
 import processing.core.PConstants;
 import processing.core.PVector;
 
+import java.util.ArrayList;
+
 public class LevelsEditor extends AbstractLevelsEditor {
 
-
+    private final ArrayList <String> unsavedData = new ArrayList<>();
     private MapZone mapZone;
     private OnScreenText fpsHud;
     private int countToMakeFirstStep;
@@ -82,7 +90,6 @@ public class LevelsEditor extends AbstractLevelsEditor {
             if (Program.engine.frameCount%20 == 0) memory = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1048576;
         }
 
-
     }
 
     @Override
@@ -102,8 +109,9 @@ public class LevelsEditor extends AbstractLevelsEditor {
 
     @Override
     public void drawObjectsInGameWorld(GameCamera gameCamera) {
-        cross.draw(gameCamera, Program.objectsFrame);
+
         mapZone.draw(gameCamera, mapZone);
+        cross.draw(gameCamera, Program.objectsFrame);
         //levelsEditorControl.draw(gameCamera, this);
     }
 
@@ -138,7 +146,17 @@ public class LevelsEditor extends AbstractLevelsEditor {
 
     @Override
     public void writeObjectsDataToRoundFile() {
-
+        if (unsavedData.size()>0){
+            int number = 0;
+            String path = ExternalRoundDataFileController.getPathToFileOnCache(Program.actualRoundNumber, LoadingMaster.USER_LEVELS);
+            for (String data: unsavedData){
+                SaveMaster.addDataToFile(path, data);
+                System.out.println("Write data: " + data);
+                number++;
+            }
+            System.out.println(number + " objects' data were written in data file" );
+            unsavedData.clear();
+        }
     }
 
     @Override
@@ -174,13 +192,12 @@ public class LevelsEditor extends AbstractLevelsEditor {
         actualStatement = nextStatement;
         if (actualStatement == LowLevelListSubbutons.GRID_PREFERENCES) submenu = new PreferencesSubmenu(this,gameRound, editorControl, mapZone);
         else if (actualStatement == LowLevelListSubbutons.NEW_CLEARING_ZONE) submenu = new ClearingZoneSubmenu(this,gameRound, editorControl, mapZone);
+        else if (actualStatement == LowLevelListSubbutons.SAVE_MAP) submenu = new SaveMapSubmenu(this,gameRound, editorControl, mapZone);
+
         else {
             System.out.println("There are no submenus for statement: " + actualStatement);
         }
-
-        //System.out.println("Global statement was changed");
     }
-    // Important
 
     public Frame getFrame(){
         return editorMenu.getFrame();
@@ -207,9 +224,36 @@ public class LevelsEditor extends AbstractLevelsEditor {
 
     public Tab getTab() {
         return editorMenu.getTab();
+
     }
 
     public FrameWithMoveableText getConsole() {
         return editorMenu.getConsole();
+    }
+
+    @Override
+    public void setActualPressedKey(char ch){
+        if (getTab() != null){
+            getTab().setActualPressedChar(ch);
+            System.out.println("New char is: " + ch);
+        }
+    }
+
+    public void saveDataForActualSubmenu() {
+        submenu.saveDataBySubmenuLeaving();
+    }
+
+    public Vec2 getCrossPos() {
+        return cross.getActualCrossPos();
+    }
+
+    public void addUnsavedData(String dataString) {
+        unsavedData.add(dataString);
+        if (Program.OS == Program.DESKTOP){
+            System.out.println("Unsaved data list: ");
+            for (String string : unsavedData){
+                System.out.println("***" + string + "***");
+            }
+        }
     }
 }

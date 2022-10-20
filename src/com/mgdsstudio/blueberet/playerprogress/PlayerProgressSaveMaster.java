@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.playerprogress;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.data.IntList;
 import processing.data.JSONArray;
@@ -50,7 +50,7 @@ public class PlayerProgressSaveMaster extends PlayerProgress{
             pathToSave = Program.getAbsolutePathToAssetsFolder(fileName);
         }
         else {
-            pathToSave = (AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+fileName);
+            pathToSave = (FileManagement.getPathToCacheFilesInAndroid()+fileName);
         }
         deleteFile();
         System.out.println("Data in array " + dataArray.toString());

@@ -10,7 +10,7 @@ import com.mgdsstudio.blueberet.oldlevelseditor.*;
 import com.mgdsstudio.blueberet.oldlevelseditor.objectsadding.PointAddingController;
 import com.mgdsstudio.blueberet.oldlevelseditor.objectsadding.RectangularElementAdding;
 import com.mgdsstudio.blueberet.loading.ExternalRoundDataFileController;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import org.jbox2d.common.Vec2;
 
@@ -505,7 +505,7 @@ public class AddingNewPlatformSystemAction extends SubmenuWithTwoRectZones{
                 }
                 else if (Editor2D.localStatement == GET_TILESET_FROM_EXTERNAL_STORAGE) {
                     ArrayList<String> actualConsoleText = new ArrayList<>();
-                    actualConsoleText.add("Copy png file to " + AndroidSpecificFileManagement.getPathToCacheFilesInAndroid());
+                    actualConsoleText.add("Copy png file to " + FileManagement.getPathToCacheFilesInAndroid());
                     onScreenConsole.setText(actualConsoleText);
                 }
                 else if (Editor2D.localStatement == TILESET_IN_DIRECTORY_CHOOSING) {

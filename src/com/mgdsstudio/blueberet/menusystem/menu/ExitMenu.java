@@ -2,7 +2,7 @@ package com.mgdsstudio.blueberet.menusystem.menu;
 
 import com.mgdsstudio.blueberet.gamelibraries.Timer;
 import com.mgdsstudio.blueberet.graphic.SpriteAnimation;
-import com.mgdsstudio.blueberet.androidspecific.MainActivity;
+
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.menusystem.GameMenusController;
 import processing.core.PApplet;

@@ -2,8 +2,10 @@ package com.mgdsstudio.blueberet.desktop;
 
 
 
-
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
+import com.mgdsstudio.blueberet.gamecontrollers.Rectangular;
+import com.mgdsstudio.blueberet.gamelibraries.Coordinate;
+import com.mgdsstudio.blueberet.gameprocess.OnScreenButton;
 import com.mgdsstudio.blueberet.gameprocess.PlayerControl;
 import com.mgdsstudio.blueberet.mainpackage.IEngine;
 import com.mgdsstudio.blueberet.oldlevelseditor.Editor2D;
@@ -25,10 +27,18 @@ import processing.core.PConstants;
 import processing.event.MouseEvent;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class DesktopLauncher extends PApplet implements ContactListener, RayCastCallback, IEngine {
     private boolean gameScreenIsLeft = false;
+    private final Vec2 centerPos = new Vec2();
 
 
     public static void main(String[] passedArgs) {
@@ -387,8 +397,10 @@ public class DesktopLauncher extends PApplet implements ContactListener, RayCast
 
     @Override
     public String[] getAssets(String path) {
-        if (Program.debug) System.out.println("Get assets is not implemented");
-        return null;
+        if (Program.debug) System.out.println("Get assets is not tested");
+        File file = new File(Program.getRelativePathToAssetsFolder());
+        String [] array = file.list();
+        return array;
     }
 
     @Override
@@ -407,18 +419,96 @@ public class DesktopLauncher extends PApplet implements ContactListener, RayCast
     }
 
     @Override
-    public void OpenKeyboard(boolean flag) {
+    public void openKeyboard(boolean flag) {
         System.out.println("No keyboard for this OS");
     }
 
     @Override
     public void copy(File source, File output) {
         try {
-            AndroidSpecificFileManagement.copy(source, output);
+            FileManagement.copy(source, output);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void addStringToClippboard(String dataString) {
+
+    }
+
+    @Override
+    public ArrayList<String> getFilesListInAssets() {
+
+        File file = new File(Program.getRelativePathToAssetsFolder());
+        ArrayList<String> list = new ArrayList<>();
+        String [] array = file.list();
+        for (int i = 0; i < array.length; i++){
+            list.add(array[i]);
+        }
+        return list;
+    }
+
+    @Override
+    public String getSketchPath() {
+        return sketchPath();
+    }
+
+    @Override
+    public void copyUserLevelsToCache() {
+        System.out.println("Levels must not be copied to the cache folder");
+    }
+
+    @Override
+    public Vec2 getCenterTouchPosition(Vec2 basicPosition, int maxZoneRadius) {
+        centerPos.x = mouseX;
+        centerPos.y = mouseY;
+        return centerPos;
+    }
+
+    @Override
+    public void fillOnStickTouchesArray(ArrayList<Coordinate> onStickTouchesArray, ArrayList<Coordinate> mutStickTouchesPool, Rectangular allStickHoleZone) {
+        if (Program.debug) System.out.println("Touches array must not be cleared");
+        onStickTouchesArray.clear();
+    }
+
+    @Override
+    public boolean isButtonTouched(OnScreenButton onScreenButton) {
+        if (Program.engine.mousePressed == true) {
+            if (Program.engine.dist(onScreenButton.getX(), onScreenButton.getY(), Program.engine.mouseX, Program.engine.mouseY) < onScreenButton.getRadius()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public ArrayList<String> getFilesListInCache() {
+        System.out.println("Function is not implemented");
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getFilesListInAssetsFolder() {
+        ArrayList<String> names = new ArrayList<>();
+        try {
+            try (Stream<Path> paths = Files.walk(Paths.get(Program.getRelativePathToAssetsFolder()))) {
+                List<String> files = paths.filter(x -> Files.isRegularFile(x))
+                        .map(Path::toString)
+                        .collect(Collectors.toList());
+                files.forEach(System.out::println);
+                for (int i = 0; i < files.size(); i++) names.add(files.get(i));
+
+            } catch (IOException ex) {
+                System.out.println("Can not get files list for this API version");
+                ex.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+        }
+        return names;
     }
 
 }

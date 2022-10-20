@@ -10,7 +10,8 @@ import com.mgdsstudio.blueberet.menusystem.gui.NES_TextArea;
 import com.mgdsstudio.blueberet.oldlevelseditor.Editor2D;
 import com.mgdsstudio.blueberet.oldlevelseditor.MapZone;
 import com.mgdsstudio.engine.nesgui.*;
-import com.yandex.metrica.impl.ob.Ed;
+
+
 
 public class PreferencesSubmenu extends AbstractSubmenu {
 
@@ -39,6 +40,7 @@ public class PreferencesSubmenu extends AbstractSubmenu {
         }
         tab.recalculateHeight();
         System.out.println("Changed");
+        super.initEditorForActualSubmenu();
     }
 
     @Override
@@ -46,14 +48,26 @@ public class PreferencesSubmenu extends AbstractSubmenu {
         if (guiElement.getName() == Constants.SHOW_GRID){
             CheckBox checkBox = (CheckBox) guiElement;
             Editor2D.showGrid = checkBox.isChecked();
+            //saveDataToFile();
         }
         else if (guiElement.getName() == Constants.GRID_STEP){
             DigitDataFieldWithText field = (DigitDataFieldWithText) guiElement;
             Editor2D.gridSpacing = field.getValue();
-
-            System.out.println("Grid step set on " + field.getValue());
+            //saveDataToFile();
+            //System.out.println("Grid step set on " + field.getValue());
         }
     }
 
+    @Override
+    public void saveDataBySubmenuLeaving() {
+        EditorPreferencesMaster master = new EditorPreferencesMaster(levelsEditor.getGameMainController().getEngine());
+        master.setGridStep(Editor2D.gridSpacing);
+        master.setShowGrid(Editor2D.showGrid);
+        master.saveChanged();
+    }
 
+    @Override
+    protected void recreateTabForNewStatement() {
+        System.out.println("This menu has only one tab statement");
+    }
 }

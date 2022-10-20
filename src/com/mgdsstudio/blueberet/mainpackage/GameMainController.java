@@ -385,4 +385,15 @@ public class GameMainController {
             gameMenusController.consoleInput(s);
         }
     }
+
+    public void setActualPressedKey(char key) {
+        if (gameProcess != null){
+            if (Program.gameStatement == Program.LEVELS_EDITOR){
+                gameProcess.setActualPressedKey(key);
+
+            }
+        }
+
+
+    }
 }

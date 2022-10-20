@@ -1,9 +1,6 @@
 package com.mgdsstudio.blueberet.oldlevelseditor.submenuaction;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.content.ClipboardManager;
-import android.content.Context;
+
 import com.mgdsstudio.blueberet.gameobjects.SingleGameElement;
 import com.mgdsstudio.blueberet.gameobjects.data.GameObjectDataForStoreInEditor;
 import com.mgdsstudio.blueberet.gameobjects.portals.PipePortal;
@@ -353,22 +350,10 @@ public class SelectingAction extends SubmenuAction{
     }
 
     private void addSelectedToClipboard(SelectedElement selectedElement) {
-
+        Program.iEngine.addStringToClippboard(selectedElement.getDataString());
         String name = selectedElement.getDataString();
         if (Program.OS == Program.ANDROID) {
 
-            ClipboardManager clipboard = (ClipboardManager) Program.engine.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData.Item item = new ClipData.Item(name);
-            String pathWasCopied = "" ;
-            //ClipDescription clipDescription = new ClipDescription(ClipDescription.MIMETYPE_TEXT_PLAIN, new String[] {MAIL});
-            ClipDescription clipDescription = new ClipDescription(pathWasCopied, new String[] {name});
-            ClipData clipData = new ClipData(clipDescription, item);
-            clipboard.setPrimaryClip(clipData);
-            System.out.println(name + " was selected");
-            //MainActivity mainActivity = (MainActivity) Program.engine.getActivity();
-            String toastText = "Selected object: " + name;
-            // if (Program.LANGUAGE == Program.RUSSIAN) toastText = "Адрес кошелька Pay Pal скопирован в буфер обмена. Вставьте его в поле адресат в вашем приложении Pay Pal чтобы пожертвовать нам на проект. ";
-            Program.iEngine.addToastMessage(toastText);
         }
         else System.out.println(name + " was selected");
     }

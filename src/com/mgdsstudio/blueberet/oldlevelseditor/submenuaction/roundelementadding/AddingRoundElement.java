@@ -112,20 +112,15 @@ public abstract class AddingRoundElement extends SubmenuAction implements RoundE
 
     protected final void createBackgroundsInDirectoryChoosingMenu(androidGUI_ScrollableTab tab, String startNameToFind, String [] extensions){
         tab.clearElements();
-        ArrayList<String> filesInGameDirectory = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            filesInGameDirectory = StringLibrary.getFilesListInAssetsFolder();
-        }
-        //ArrayList<String> filesInCacheDirectory = StringLibrary.getFilesListInCache();
+        ArrayList<String> filesInGameDirectory;
+        filesInGameDirectory = Program.iEngine.getFilesListInAssets();
         ArrayList<String> imageFilesFromGameDirectory = StringLibrary.deleteFromArrayAllStringsExceptOne(filesInGameDirectory, startNameToFind);
-        //ArrayList<String> imageFilesFromCache = StringLibrary.deleteFromArrayAllStringsExceptOne(filesInGameDirectory, startNameToFind);
         ArrayList<String> imagesWithPrefix = new ArrayList<>();
         for (int j = 0; j < extensions.length; j++){
             ArrayList<String> imagesWithPrefixForActualExtension = StringLibrary.leaveInArrayFilesWithExtension(imageFilesFromGameDirectory, extensions[j]);
             for (int i = 0; i < imagesWithPrefixForActualExtension.size(); i++){
                 String pathToBackground = StringLibrary.getStringAfterPathDevider(imagesWithPrefixForActualExtension.get(i));
                 imagesWithPrefix.add(pathToBackground);
-                //imagesWithPrefix.add(imagesWithPrefixForActualExtension.get(i)); was
             }
         }
         System.out.println("Backgrounds:");

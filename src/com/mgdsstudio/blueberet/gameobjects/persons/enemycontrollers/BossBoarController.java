@@ -12,9 +12,7 @@ import com.mgdsstudio.blueberet.graphic.EnemiesAnimationController;
 import com.mgdsstudio.blueberet.graphic.HUD.hudpanels.PortraitPicture;
 import com.mgdsstudio.blueberet.graphic.HUD.hudpanels.SMS;
 import com.mgdsstudio.blueberet.graphic.HUD.hudpanels.SMSController;
-import com.mgdsstudio.blueberet.graphic.splashes.JumpSplash;
-import com.mgdsstudio.blueberet.graphic.splashes.Splash;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.zones.CameraFixationZone;
@@ -22,7 +20,6 @@ import com.mgdsstudio.blueberet.zones.MessageAddingZone;
 import com.mgdsstudio.blueberet.zones.SingleFlagZone;
 import org.jbox2d.common.Vec2;
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
 
 import java.io.File;
@@ -775,7 +772,7 @@ public class BossBoarController extends EnemyController{
 
         HowToKillMessageAdder(){
             final String prefixName = "Boss1.txt";
-            if (Program.OS == Program.ANDROID) fileName = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+prefixName;
+            if (Program.OS == Program.ANDROID) fileName = FileManagement.getPathToCacheFilesInAndroid()+prefixName;
             else if (Program.OS == Program.DESKTOP) fileName = Program.getAbsolutePathToAssetsFolder(prefixName);
         }
 

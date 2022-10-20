@@ -1,7 +1,13 @@
 package com.mgdsstudio.blueberet.mainpackage;
 
+import com.mgdsstudio.blueberet.gamecontrollers.Rectangular;
+import com.mgdsstudio.blueberet.gamelibraries.Coordinate;
+import com.mgdsstudio.blueberet.gameprocess.OnScreenButton;
+import org.jbox2d.common.Vec2;
+
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public interface IEngine {
 
@@ -48,7 +54,27 @@ public interface IEngine {
 
     void copyDataToClipboard(String MAIL, String path);
 
-    void OpenKeyboard(boolean flag);
+    void openKeyboard(boolean flag);
 
     void copy(File source, File output);
+
+    void addStringToClippboard(String dataString);
+
+    ArrayList<String> getFilesListInAssets();
+
+    String getSketchPath();
+
+    void copyUserLevelsToCache();
+
+    Vec2 getCenterTouchPosition(Vec2 basicPosition, int maxZoneRadius);
+
+    void fillOnStickTouchesArray(ArrayList<Coordinate> onStickTouchesArray, ArrayList<Coordinate> mutStickTouchesPool, Rectangular allStickHoleZone);
+
+    boolean isButtonTouched(OnScreenButton onScreenButton);
+
+    ArrayList<String> getFilesListInCache();
+
+    ArrayList<String> getFilesListInAssetsFolder();
+
+
 }

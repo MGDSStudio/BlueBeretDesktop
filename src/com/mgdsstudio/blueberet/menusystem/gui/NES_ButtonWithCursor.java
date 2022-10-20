@@ -3,6 +3,7 @@ package com.mgdsstudio.blueberet.menusystem.gui;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.menusystem.GameMenusController;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class NES_ButtonWithCursor extends NES_ElementWithCursor {
@@ -26,6 +27,7 @@ public class NES_ButtonWithCursor extends NES_ElementWithCursor {
             if (isVisible()) {
                 drawName(graphics);
             }
+
             //else System.out.println("Button is invisible " + name);
             //drawDebugRect(graphics);
         }

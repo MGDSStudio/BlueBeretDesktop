@@ -8,7 +8,7 @@ import com.mgdsstudio.blueberet.graphic.HUD.WeaponChangingController;
 import com.mgdsstudio.blueberet.graphic.background.Background;
 import com.mgdsstudio.blueberet.oldlevelseditor.Editor2D;
 import com.mgdsstudio.blueberet.loading.ExternalRoundDataFileController;
-import com.mgdsstudio.blueberet.classestoberemoved.menus.Menu;
+
 import com.mgdsstudio.blueberet.onscreenactions.OnFlickAction;
 import com.mgdsstudio.blueberet.onscreenactions.OnPinchAction;
 import org.jbox2d.dynamics.Body;
@@ -169,7 +169,7 @@ public abstract class Program implements IGameConstants {
     //Android specific and data transfer
     private static String sketchPath = "";
     public static File fileSelectedByUser;
-    private static boolean virtualKeyboardOpened = false;
+    public static boolean virtualKeyboardOpened = false;
 
     //Language
     public final static byte RUSSIAN = 0;
@@ -178,10 +178,6 @@ public abstract class Program implements IGameConstants {
     public final static boolean USE_ALWAYS_ENGLISH_IN_MENU = false;
     public static byte LANGUAGE = RUSSIAN;
     //public static byte LANGUAGE = ENGLISH;
-
-    //Menus
-    public static int actualMenu = Menu.MAIN_MENU;
-    public static int previousMenu = Menu.MAIN_MENU;
 
     //hidden elements
     public static final boolean WITH_LIFE_LINES = false;
@@ -540,6 +536,8 @@ public abstract class Program implements IGameConstants {
     }
 
     public static void openVirtualKeyboard(boolean flag){
+        iEngine.openKeyboard(flag);
+        /*
         if (OS == ANDROID) {
             if (flag && !virtualKeyboardOpened) {
                 engine.openKeyboard();
@@ -547,7 +545,7 @@ public abstract class Program implements IGameConstants {
                 System.out.println("Keyword opened");
             }
             else if (!flag && virtualKeyboardOpened){
-                iEngine.OpenKeyboard(false);
+                iEngine.openKeyboard(false);
                 //engine.closeKeyboard();
                 virtualKeyboardOpened = false;
                 System.out.println("Keyword opened");
@@ -555,7 +553,7 @@ public abstract class Program implements IGameConstants {
             else{
                 System.out.println("Trouble: " + virtualKeyboardOpened + " must be " + flag);
             }
-        }
+        }*/
         /*
 
 if (OS == ANDROID) {

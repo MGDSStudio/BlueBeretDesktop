@@ -184,16 +184,16 @@ public class SaveMaster extends ExternalRoundDataFileController{
     }
 
     public static boolean addDataToFile(String path, String data){
+        PrintWriter output = null;
         try {
             if (Program.OS == Program.DESKTOP) {
-                PrintWriter output = new PrintWriter((new FileWriter(Program.getAbsolutePathToAssetsFolder(path), true)));
-                //output.println(); //!!!!!
+                output = new PrintWriter((new FileWriter(Program.getAbsolutePathToAssetsFolder(path), true)));
                 output.println(data);
                 output.flush();
                 output.close();
             }
             else if (Program.OS == Program.ANDROID){
-                PrintWriter output = new PrintWriter((new FileWriter(path, true)));
+                output = new PrintWriter((new FileWriter(path, true)));
                 //output.println();   //!!!!!
                 output.println(data);
                 output.flush();
@@ -202,6 +202,9 @@ public class SaveMaster extends ExternalRoundDataFileController{
         }
         catch (IOException e){
             System.out.println("System is busy");
+        }
+        finally {
+            if (output != null ) output.close();
         }
         boolean saved = true;
         return saved;

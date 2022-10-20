@@ -372,6 +372,7 @@ public abstract class HumanAnimationController extends PersonAnimationController
 
         this.mainGraphicController = mainGraphicController;
         Tileset tileset = mainGraphicController.getTilesetUnderPath(getPathToActualSpritesheet(weaponType));
+        System.out.println("Try to load tileset from: " + tileset.getPath());
         deadStayingSprite.loadSprite(tileset);
         deadBackLayingSprite.loadSprite(tileset);
         deadFrontLayingSprite.loadSprite(tileset);

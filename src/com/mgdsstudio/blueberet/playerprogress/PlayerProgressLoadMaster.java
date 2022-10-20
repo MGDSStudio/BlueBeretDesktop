@@ -1,6 +1,6 @@
 package com.mgdsstudio.blueberet.playerprogress;
 
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
@@ -10,7 +10,7 @@ public class PlayerProgressLoadMaster extends PlayerProgress{
     public PlayerProgressLoadMaster() {
         String pathForFile;
         if (Program.OS == Program.DESKTOP) pathForFile = Program.getAbsolutePathToAssetsFolder(fileName);
-        else pathForFile = AndroidSpecificFileManagement.getPathToCacheFilesInAndroid()+fileName;
+        else pathForFile = FileManagement.getPathToCacheFilesInAndroid()+fileName;
         dataArray = Program.engine.loadJSONArray(pathForFile);
     }
 

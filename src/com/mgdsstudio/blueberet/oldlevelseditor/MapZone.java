@@ -5,6 +5,7 @@ package com.mgdsstudio.blueberet.oldlevelseditor;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.mainpackage.GameCamera;
 import com.mgdsstudio.engine.nesgui.Frame;
+import org.jbox2d.common.Vec2;
 import processing.core.*;
 
 import java.util.ArrayList;
@@ -151,4 +152,21 @@ public class MapZone {
 	}
 
 
+    public void addPoint(Vec2 pos) {
+		  Point point = new Point(new PVector(pos.x, pos.y));
+		  pointsOnMap.add(point);
+    }
+
+	public void createFigureFromPoints(byte type) {
+		  if (pointsOnMap.size()>=2){
+			  Figure figure = new Figure(pointsOnMap, type);
+			  figures.add(figure);
+		  }
+		  else System.out.println("Can not create a figure. We have only " + pointsOnMap.size() + " points but need " );
+	}
+
+	public void clearPointsAndFigures() {
+		  figures.clear();
+		  pointsOnMap.clear();
+	}
 }

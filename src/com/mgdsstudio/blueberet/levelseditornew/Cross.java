@@ -58,7 +58,7 @@ class Cross {
 
             //realCoordinate.x = mutPos.x;
             //realCoordinate.y = mutPos.y;
-            realCoordinate = theoreticalCoordinate;
+
             objectCoordinate.x = mapZoneCenterX;
             objectCoordinate.y = mapZoneCenterY;
             /*
@@ -67,7 +67,12 @@ class Cross {
              */
             //System.out.println("Theoretical: " + theoreticalCoordinate + " but nearest at: " + getNearestPointOnGrid(gameCamera, objectCoordinate));
 
-            realCoordinate = objectCoordinate;
+            // realCoordinate = objectCoordinate;
+
+            realCoordinate.x = mapZoneCenterX;
+            realCoordinate.y = mapZoneCenterY;
+            realCoordinate = getNearestPointOnGrid(gameCamera, realCoordinate);
+
             //realCoordinate = getNearestPointOnGrid(gameCamera, objectCoordinate);
             //realCoordinate.x = realCoordinate.x;
             //realCoordinate.y = realCoordinate.y;
@@ -81,7 +86,7 @@ class Cross {
             float distanceToCenterLineY = (point.y - Program.engine.height/2);
             point.x = ((gameCamera.getActualPosition().x + distanceToCenterLineX / gameCamera.getScale()));
             point.y = ((gameCamera.getActualPosition().y + distanceToCenterLineY / gameCamera.getScale()));
-            if (Program.engine.frameCount %100 == 0) System.out.println("This function must be adjusted to object frame dimensions");
+            //if (Program.engine.frameCount %100 == 0) System.out.println("This function must be adjusted to object frame dimensions");
             float positivDeltaX = point.x% Editor2D.gridSpacing;
             float positivDeltaY = point.y%Editor2D.gridSpacing;
             float negativDeltaX = Editor2D.gridSpacing-positivDeltaX;
@@ -132,7 +137,7 @@ class Cross {
         graphic.pushStyle();
         graphic.noFill();
         graphic.translate(theoreticalCoordinate.x - gameCamera.getActualXPositionRelativeToCenter(), theoreticalCoordinate.y - gameCamera.getActualYPositionRelativeToCenter());
-        //System.out.println("Drawn at: " + (int)realCoordinate.x + "x" +  (int)realCoordinate.y + " on screen " +  (int)(realCoordinate.x - gameCamera.getActualXPositionRelativeToCenter()) +"x"+  (int)(realCoordinate.y - gameCamera.getActualYPositionRelativeToCenter()));
+        //System.out.println("Drawn theoretical at: " + (int)theoreticalCoordinate.x + "x" +  (int)theoreticalCoordinate.y + " on screen " +  (int)(theoreticalCoordinate.x - gameCamera.getActualXPositionRelativeToCenter()) +"x"+  (int)(theoreticalCoordinate.y - gameCamera.getActualYPositionRelativeToCenter()));
         graphic.strokeWeight(linesThickness);
         graphic.stroke(255,0,0);
         graphic.line(-crossWidth/2, 0,crossWidth/2,0);
@@ -141,6 +146,10 @@ class Cross {
         graphic.popStyle();
         graphic.popMatrix();
 
+    }
+
+    public Vec2 getActualCrossPos(){
+        return realCoordinate;
     }
 
     public boolean isVisible() {

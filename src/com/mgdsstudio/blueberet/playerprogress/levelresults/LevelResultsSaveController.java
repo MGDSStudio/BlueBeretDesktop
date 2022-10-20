@@ -4,7 +4,7 @@ import com.mgdsstudio.blueberet.gameobjects.persons.Person;
 import com.mgdsstudio.blueberet.gameprocess.GameRound;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import com.mgdsstudio.blueberet.zones.SecretAreaZone;
-import com.yandex.metrica.impl.ob.A;
+
 import processing.core.PApplet;
 import processing.data.IntList;
 import processing.data.JSONObject;

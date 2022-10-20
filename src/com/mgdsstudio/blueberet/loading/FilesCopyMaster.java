@@ -1,7 +1,7 @@
 package com.mgdsstudio.blueberet.loading;
 
 import com.mgdsstudio.blueberet.gamelibraries.StringLibrary;
-import com.mgdsstudio.blueberet.androidspecific.AndroidSpecificFileManagement;
+import com.mgdsstudio.blueberet.gamelibraries.FileManagement;
 import com.mgdsstudio.blueberet.mainpackage.Program;
 import processing.core.PApplet;
 
@@ -28,7 +28,7 @@ public class FilesCopyMaster {
                 data = StringLibrary.getFilesListInAssetsFolder();
             //}
             if (data == null) {
-                System.out.println("Data is null. SDK: " + android.os.Build.VERSION.SDK_INT + " must be: " + android.os.Build.VERSION_CODES.O);
+                //System.out.println("Data is null. SDK: " + android.os.Build.VERSION.SDK_INT + " must be: " + android.os.Build.VERSION_CODES.O);
                 //StringLibrary.getFilesListInAssetsFolderForOldAndroid();
             }
             for (int i = 0; i < data.size(); i++) {
@@ -46,7 +46,7 @@ public class FilesCopyMaster {
                 //Program.engine.getActivity().getAssets().open(Program.getAbsolutePathToAssetsFolder( file));
                 //return Program.engine.getActivity().getAssets().open( file);
 
-                out = new FileOutputStream(AndroidSpecificFileManagement.getPathToCacheFilesInAndroid() + outputFileName);
+                out = new FileOutputStream(FileManagement.getPathToCacheFilesInAndroid() + outputFileName);
                 byte[] buf = new byte[8192];
                 int length;
                 while ((length = stream.read(buf)) > 0) {

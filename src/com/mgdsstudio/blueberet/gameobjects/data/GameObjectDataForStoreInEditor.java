@@ -351,6 +351,11 @@ public class GameObjectDataForStoreInEditor extends GameObjectData implements Cl
         return className;
     }
 
+    @Override
+    public void createDataString() {
+        System.out.println("Function is not implemented");
+    }
+
     public String getDataString() {
         if (dataString.length()<1){
             System.out.println("Data was not generated yet. Use generate before get");

@@ -89,10 +89,10 @@ public class UserLevelsMenu extends AbstractMenuWithTitleAndBackButton {
 
         ArrayList<String> rounds = getLevelsList(allFiles);
         System.out.println("There are " + rounds.size() + " levels from " + startY + "; In dir: " + allFiles.size() + " files");
-        System.out.println("+++ Full files list in dir : " );
+        /*System.out.println("+++ Full files list in dir : " );
         for (int i = 0; i < allFiles.size(); i++){
             System.out.println("*** " + allFiles.get(i) );
-        }
+        }*/
         for (int i = 0; i < rounds.size(); i++) {
             LoadingMaster loadingMaster = new LoadingMaster((byte)StringLibrary.getLevelNumberFromName(rounds.get(i)), LoadingMaster.USER_LEVELS);
             String name = loadingMaster.getLevelName();

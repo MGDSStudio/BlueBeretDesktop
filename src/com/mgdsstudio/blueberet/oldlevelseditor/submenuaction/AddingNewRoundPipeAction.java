@@ -1,7 +1,7 @@
 package com.mgdsstudio.blueberet.oldlevelseditor.submenuaction;
 
 import com.mgdsstudio.blueberet.gamelibraries.StringLibrary;
-import com.mgdsstudio.blueberet.classestoberemoved.Flower;
+
 import com.mgdsstudio.blueberet.gameobjects.RoundPipe;
 import com.mgdsstudio.blueberet.gameobjects.data.GameObjectDataForStoreInEditor;
 import com.mgdsstudio.blueberet.gameobjects.persons.flower.PlantController;
@@ -291,13 +291,13 @@ public class AddingNewRoundPipeAction extends AddingRoundElement {
                 else if (Editor2D.localStatement == FLOWER_EXISTENCE_SETTING) {
                         makePauseToNextOperation();
                         if (releasedElement.getName() == WITHOUT_FLOWER) {
-                            objectData.setFlowerBehaviour(Flower.NO_FLOWER);
+                            objectData.setFlowerBehaviour(PlantController.NO_FLOWER);
                             Editor2D.setNewLocalStatement(NEW_OR_EXISTING_TILESET);
                         } else if (releasedElement.getName() == STAY_AND_BITE) {
-                            objectData.setFlowerBehaviour(Flower.STAY_AND_BITE);
+                            objectData.setFlowerBehaviour(PlantController.STAY_AND_BITE);
                             Editor2D.setNextLocalStatement();
                         } else if (releasedElement.getName() == UP_BITE_DOWN) {
-                            objectData.setFlowerBehaviour(Flower.UP_BITE_DOWN);
+                            objectData.setFlowerBehaviour(PlantController.UP_BITE_DOWN);
                             Editor2D.setNextLocalStatement();
                         } else Editor2D.setNextLocalStatement();
                     }
