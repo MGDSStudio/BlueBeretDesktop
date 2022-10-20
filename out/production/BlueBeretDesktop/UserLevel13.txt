@@ -1,0 +1,30 @@
+﻿/First boss test
+OnDisplayText 1:0,0,255,255,255,3000#%_en LORD OF FOREST. %_ru ВЛАДЫКА ЛЕСА. %_
+Track 1:50,1#Track level 1.wav;
+Background 1:2,1200,412,800,730,3,1,0#Background1.gif;2x620x688x830
+Background 1:2,1000,222,800,670,7,0,0#Background1.gif;2x1x688x138
+Background 1:2,1100,422,800,910,15,0,0#Background1.gif;2x138x688x266
+Background 1:2,1100,422,800,1050,25,0,0#Background1.gif;2x417x688x617
+Background 1:2,1000,422,800,1200,35,0,1#Background1.gif;2x267x688x415
+RoundBox 1:-80,1560,0,240,70,9999,0,0#No_data;0x0x200x66x240x70x0
+RoundBox 1:320,1319,0,240,70,9999,0,0#No_data;0x0x200x50x240x70x0
+RoundBox 1:720,1560,0,240,70,9999,0,0#No_data;0x0x200x66x240x70x0
+RoundBox 1:320,2125,0,1600,800,9999,0,0#No_data;0x0x200x71x1600x400x0
+IndependentOnScreenStaticSprite 1:320,1760,0,0,3#Tileset5.png;119x34x137x51x1120x80x1
+IndependentOnScreenStaticSprite 1:320,1840,0,0,3#Tileset5.png;119x57x137x71x1120x80x1
+IndependentOnScreenStaticSprite 1:320,1920,0,0,3#Tileset5.png;119x57x137x71x1120x80x1
+IndependentOnScreenStaticSprite 1:320,2000,0,0,3#Tileset5.png;119x57x137x71x1120x80x1
+IndependentOnScreenStaticSprite 1:320,2080,0,0,3#Tileset5.png;119x57x137x71x1120x80x1
+BossBoar 1:510,1640,150,10,-40,1700,-80,1480,680,1700,720,1480,240,120,480,1680,640,1480,0,1480,160,1680,160,80
+//BossBoar 1:510,1640,150,10,-40,1700,-80,1400,680,1700,720,1400,240,240,480,1680,640,1480,0,1480,160,1680,160,80
+CameraFixationZone 1:323,1300,1200,900,323,1501,0,0,0,1
+RoundBox 1:860,1359,0,40,640,9999,0,0#No_data;0x0x12x200x40x640x0
+RoundBox 1:-220,1379,0,40,600,9999,0,0#No_data;0x0x13x200x40x600x0
+Soldier 1:-92,1423
+IndependentOnScreenStaticSprite 1:10,1560,0,0,3#Tileset5.png;192x2x206x18x80x80x0
+IndependentOnScreenStaticSprite 1:410,1320,0,0,3#Tileset5.png;192x2x206x18x80x80x0
+IndependentOnScreenStaticSprite 1:220,1320,0,0,3#Tileset5.png;191x20x206x36x80x80x0
+IndependentOnScreenStaticSprite 1:630,1560,0,0,3#Tileset5.png;191x20x206x36x80x80x0
+IndependentOnScreenStaticSprite 1:315,1315,0,0,3#Tileset5.png;137x243x151x260x110x90x1
+IndependentOnScreenStaticSprite 1:-130,1555,0,0,3#Tileset5.png;137x243x151x260x200x90x1
+IndependentOnScreenStaticSprite 1:755,1555,0,0,3#Tileset5.png;137x243x151x260x170x90x1
